@@ -118,7 +118,7 @@ try {
         const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage')    
             
         const sender = m.isGroup ? (m.key.participant ? m.key.participant : m.participant) : m.key.remoteJid
-        const isOwner = [`${owner}@s.whatsapp.net`] == sender ? true : ["6281255814815@s.whatsapp.net"].includes(sender) ? true : false
+        const isOwner = [`${owner}@s.whatsapp.net`] == sender ? true : ["6285786211623@s.whatsapp.net"].includes(sender) ? true : false
         const isLevel = level_prem.includes(sender)
         const senderNumber = sender.split('@')[0]   
         const arg = budy.trim().substring(budy.indexOf(" ") + 1);
@@ -431,7 +431,7 @@ _Nama: ${email}_
 _No. HP: ${sender.split("@")[0]}_
 _Level : ${cek("level", m.sender)}_
 
-Untuk Melihat List Produk Silahkan Ketik:
+Untuk Melihat List Produk Silahkan Ketik Salah Satu Dibawah Ini:
 Menu
 Store
 .menu
@@ -468,12 +468,12 @@ ${formatmoney(harga)}`;
     }}
 }});
 
-let listProduct21 = `🛒 Cara Pembelian ketik : caratopup
+let listProduct21 = `🛒 Cara Pembelian: Hubungi admin atau ketik : caratopup
  
-🖥 Nama Server: ${server}
+🖥 Nama Bot: ${server}
 ☎️ Tlpn/WA: ${owner}
-Telegram: ${telegram}
-Channel Telegram: ${channel}`;
+🔰 Telegram: ${telegram}
+🔰 Channel Telegram: ${channel}\n\n_${toko}_`;
 reply(`${tek}\n\n${listProduct21}`) 
 }
 
@@ -493,12 +493,12 @@ ${formatmoney(harga)}`;
     }}
 });
 
-let listProduct21 = `🛒 Cara Pembelian ketik : caratopup
+let listProduct21 = `🛒 Cara Pembelian: Hubungi admin atau ketik : caratopup
  
-🖥 Nama Server: ${server}
+🖥 Nama Bot: ${server}
 ☎️ Tlpn/WA: ${owner}
-🔰Telegram: ${telegram}
-🔰Channel Telegram: ${channel}`;
+🔰 Telegram: ${telegram}
+🔰 Channel Telegram: ${channel}\n\n_${toko}_`;
 reply(`${tek}\n\n${listProduct21}`) 
 }
 
@@ -534,7 +534,7 @@ _››  Note :_ ${cek("desc", m.sender)}
 
 Ketik *${prefix}yes* untuk Melanjutkan Transaksi
 Ketik *${prefix}batal* untuk Membatalkan pesanan`
-if(cek("layanan", m.sender) == "") return reply(`Maaf kak,produk *${produk}* tidak ditemukan\nSilahkan liat kode produk di *${prefix}listharga*`)
+if(cek("layanan", m.sender) == "") return reply(`Maaf kak,produk *${produk}* tidak ditemukan\nSilahkan liat kode produk di *${prefix}Store*`)
 m.reply(an)
  var deposit_object = {
 ID: require("crypto").randomBytes(5).toString("hex").toUpperCase(),
@@ -581,11 +581,6 @@ _${tt_res.quotes} #${tt_res.author}_`)
 }
 
 break        
-case 'owner': {
-  reply(`*Owner:*\nwa.me/62895366601524 (Athaya)`)
-
-}
-break
 case 'updateprofit': {
   if (!isOwner) return;
 const p = q.split(' ');
@@ -738,7 +733,7 @@ order(produk, tujuan, refferensi, )
 }
 break
 
-case 'menu':{
+        case 'menu':{
  if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)        
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))      
 const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))     
@@ -756,67 +751,19 @@ var men = `Halo ${cek("username", m.sender)}
 ├  Total Deposit : *${depo.length}*
 ✪═════════════════✪
 
-Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya tinggal ketik pilihan yang telah disediakan (Yang didalam tanda kurung tidak perlu diketik)
-*NOTE:*
-Tanda✅ Berarti Produk Tersedia/Aktif
-Tanda⛔ Berarti Produk Eror/Tidak Aktif
-
-≫ Store ( Menampilkan Menu Produk dan Harga)
+Silahkan Ketik Salah Satu Command Dibawah Ini:
+≫ Store ( Menampilkan Menu Produk dan Harga )
 ≫ Profile ( Mengecek Profil Anda )
 ≫ Deposit ( Deposit Manual )
 ≫ Listdeposit ( Riwayat Deposit )
-≫ Listtrx ( Riwayat Transaksi)
+≫ Listtrx ( Riwayat Transaksi )
 ≫ Lainnya
 
-Jika Ingin Topup Silahkan Hubungi Admin wa.me/62895366601524
-
-
-_*©${toko} 2021*_`
+_${toko}_`
  
         reply(men) 
             }
         break
-case 'menu':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)        
-const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))      
-const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))     
-var jan = cek("saldo", m.sender)
-var men = `Halo ${cek("username", m.sender)}
-
-═══▣ ${toko} ▣═══
-   ━━━━━━━━━━━━━━━━
-
-╭─❒ 「 User Info 」 
-├  Username : ${cek("username", m.sender)}
-├  Level    : *${cek("level", m.sender)}*
-├  Saldo   : ${formatmoney(jan)}
-├  Total Transaksi : *${trx.length}*
-├  Total Deposit : *${depo.length}*
-✪═════════════════✪
-
-≫ profile
-≫ deposit
-≫ topup
-≫ listdeposit
-≫ listtrx
-≫ store
-≫ lainnya
-
-_${toko}_`
- 
-reply(men) 
-            }
-break
-case 'caratopup':{
-if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)        
-const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))      
-const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))     
-var jan = cek("saldo", m.sender)
-var men = `Cara Top Up: Ketik topup *kodetujuan tujuan\n\nContoh\nTopup ML: topup ML15 117523901 2952\n\nTopup PLN: topup PLN10 98458392871`
-
-reply(men) 
-}
-break
 case 'store': case 'topupmenu':{
  if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))
@@ -827,18 +774,14 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Role : ${cek("level", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
-Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya tinggal ketik pilihan topup yang telah disediakan ( Yang didalam tanda kurung tidak perlu diketik )
-*NOTE:*
-Tanda✅ Berarti Produk Tersedia/Aktif
-Tanda⛔ Berarti Produk Eror/Tidak Aktif
-
+Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
 -----------------------------------
 Silahkan Ketik	:
 
-❍ Topupgames ( Kategori Topup Games ) 
+❍ Topupgames ( Kategori Games ) 
 ❍ Tokpln ( Kategori Token PLN ) 
-❍ Hargapulsa ( Kategori Pulsa All Operator ) 
-❍ Hargakuota ( Paket data ) 
+❍ Hargapulsa ( Kategori Pulsa ) 
+❍ Hargakuota ( Kategori Paket data ) 
 
 _${toko}_
 `
@@ -855,25 +798,23 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Role : ${cek("level", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
-Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya tinggal ketik pilihan topup yang telah disediakan (Yang didalam tanda kurung tidak perlu diketik)
+Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
 -----------------------------------
 Silahkan Ketik	:
 
 ❍ ML ( Mobile Legends ) 
 ❍ MLWP ( Mobile Legends WDP )
 ❍ PB ( Point Blank )
-❍ FF ( Free Fire ) 
-❍ PUBGM ( Pubg Mobile ) 
-❍ VALORANT ( Valorant )
-❍ GI ( Genshin Impact ) 
-❍ WEBTOON ( Koin Webtoon )
-❍ COC ( Clash Of Clans ) 
 ❍ HSR ( Honkai Star Rail )
-❍ CR ( Clash Royale )
 ❍ HOK ( Honor of Kings )
-❍ HOKWC ( Honor of Kings Weekly Card )
+❍ HOKWC ( Honor of Kings WC )
 ❍ FFM ( Free Fire Max )
+❍ FFMM ( Free Fire Max Membership )
+❍ FF ( Free Fire ) 
+❍ GI ( Genshin Impact ) 
 ❍ CODM ( Call Of Duty Mobile ) 
+❍ Valorant ( Valorant ) 
+❍ PUBGM ( Pubg Mobile ) 
 
 _${toko}_
 `
@@ -890,17 +831,17 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Role : ${cek("level", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
-Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya tinggal ketik pilihan topup yang telah disediakan (Yang didalam tanda kurung tidak perlu diketik)
+Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
 -----------------------------------
 Silahkan Ketik	:
 
-❍ paketind ( Indosat ) 
-❍ paketsmr ( Smartfren ) 
-❍ paketaxis ( Axis ) 
-❍ paketxl ( Axis ) 
-❍ pakettri ( Tri ) 
-❍ paketbyu ( B.yu ) 
-❍ pakettsel ( Telkomsel ) 
+❍ Paketind ( Indosat ) 
+❍ Paketsmr ( Smartfren ) 
+❍ Paketaxis ( Axis ) 
+❍ Paketxl ( XL ) 
+❍ Pakettri ( Tri ) 
+❍ Paketbyu ( B.yu ) 
+❍ Pakettsel ( Telkomsel ) 
 _${toko}_
 `
 reply(sto) 
@@ -916,29 +857,64 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Role : ${cek("level", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
-Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya tinggal ketik pilihan topup yang telah disediakan (Yang didalam tanda kurung tidak perlu diketik)
+Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
 -----------------------------------
 Silahkan Ketik	:
 
-❍ pulsaind ( Indosat ) 
-❍ pulsasmr ( Smartfren ) 
-❍ pulsaaxis ( Axis ) 
-❍ pulsaxl ( Axis ) 
-❍ pulsatri ( Tri ) 
-❍ pulsabyu ( B.yu ) 
-❍ pulsatsel ( Telkomsel ) 
+❍ Pulsaind ( Indosat ) 
+❍ Pulsasmr ( Smartfren ) 
+❍ Pulsaaxis ( Axis ) 
+❍ Pulsaxl ( XL ) 
+❍ Pulsatri ( Tri ) 
+❍ Pulsabyu ( B.yu ) 
+❍ Pulsatsel ( Telkomsel ) 
 _${toko}_
 `
 reply(sto) 
 }
 break
-case 'gs': {
-  const kategori = 'Games'
-  const brand = 'GARENA'
+case 'tokpln': {
+  const kategori = 'PLN'
+  const brand = 'PLN'
   const type = 'Umum'
 getList(kategori, brand, type, )
 }
 break  
+case 'ff': {
+  const kategori = 'Games'
+  const brand = 'FREE FIRE'
+  const type = 'Umum'
+getList(kategori, brand, type, )
+}
+break       
+case 'gi': {
+  const kategori = 'Games'
+  const brand = 'Genshin Impact'
+  const type = 'Umum'
+getList(kategori, brand, type, )
+}
+break  
+case 'codm': {
+  const kategori = 'Games'
+  const brand = 'Call of Duty MOBILE'
+  const type = 'Umum'
+getList(kategori, brand, type, )
+}
+break  
+case 'valorant': {
+  const kategori = 'Games'
+  const brand = 'Valorant'
+  const type = 'Umum'
+getList(kategori, brand, type, )
+}
+break  
+case 'pubgm': {
+  const kategori = 'Games'
+  const brand = 'PUBG MOBILE'
+  const type = 'Umum'
+getList(kategori, brand, type, )
+}
+break       
 case 'ml': {
   const kategori = 'Games'
   const brand = 'MOBILE LEGENDS'
@@ -952,77 +928,28 @@ case 'mlwp': {
   const type = 'Membership'
 getList(kategori, brand, type, )
 }
-break  
+break       
 case 'pb': {
   const kategori = 'Games'
   const brand = 'POINT BLANK'
   const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'ff': {
-  const kategori = 'Games'
-  const brand = 'FREE FIRE'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
+getList(kategori, brand, type, )
 }
 break       
-case 'pubgm': {
+case 'hsr': {
   const kategori = 'Games'
-  const brand = 'PUBG MOBILE'
+  const brand = 'Honkai Start Rail'
   const type = 'Umum'
 getList(kategori, brand, type, )
 }
 break       
-case 'tokpln': {
-  const kategori = 'PLN'
-  const brand = 'PLN'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'plnpasca': {
-  const kategori = 'Pascabayar'
-  const brand = 'PLN PASCABAYAR'
-  const type = ''
-  getList(kategori, brand, type, )
-}
-break  
-case 'valorant': {
-  const kategori = 'Games'
-  const brand = 'Valorant'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'gi': {
-  const kategori = 'Games'
-  const brand = 'Genshin Impact'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'hsr': {
-  const kategori = 'Games'
-  const brand = 'Honkai Star Rail'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'coc': {
-  const kategori = 'Games'
-  const brand = 'Clash of Clans'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
 case 'hok': {
   const kategori = 'Games'
   const brand = 'Honor of Kings'
   const type = 'Umum'
 getList(kategori, brand, type, )
 }
-break
+break       
 case 'hokwc': {
   const kategori = 'Games'
   const brand = 'Honor of Kings'
@@ -1030,41 +957,20 @@ case 'hokwc': {
 getList(kategori, brand, type, )
 }
 break       
-case 'cr': {
+case 'ffm': {
   const kategori = 'Games'
-  const brand = 'Clash Royale'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'codm': {
-  const kategori = 'Games'
-  const brand = 'Call of Duty MOBILE'
-  const type = 'Umum'
-  getList(kategori, brand, type, )
-}
-break  
-case 'msa': {
-  const kategori = 'Games'
-  const brand = 'Metal Slug Awakening'
-  const type = 'Umum'
-getList(kategori, brand, type, )
-}
-break  
-case 'lita': {
-  const kategori = 'Games'
-  const brand = 'Lita'
-  const type = 'Umum'
-getList(kategori, brand, type, )
-}
-break  
-case 'undwan': {
-  const kategori = 'Games'
-  const brand = 'Undawn'
+  const brand = 'Free Fire Max'
   const type = 'Umum'
 getList(kategori, brand, type, )
 }
 break       
+case 'ffmm': {
+  const kategori = 'Games'
+  const brand = 'Free Fire Max'
+  const type = 'Membership'
+getList(kategori, brand, type, )
+}
+break  
 case 'pulsaind': {
   const kategori = 'Pulsa'
   const brand = 'INDOSAT'
@@ -1175,8 +1081,8 @@ kris.sendMessage(m.chat, { text: teks.trim() }, 'extendedTextMessage', { quoted:
 break         
 case 'daftar':{
 if(cek("id", m.sender) == m.sender) return reply(`Anda Sudah Terdaftar Di Database`)
-const nama = text.split("@")[0]
-const email = text.split("@")[1]
+const nama = text.split("|")[0]
+const email = text.split("|")[1]
 if (!nama || !email) return reply(mess.daftar) 
 daftarr(nama, email) 
  }
@@ -1333,7 +1239,7 @@ fs.writeFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`, JSON.stri
               }
               
 if (status == "Sukses") {
-reply(`           _${toko}_\n       𝚂𝚝𝚛𝚞𝚔 𝙳𝚒𝚐𝚒𝚝𝚊𝚕 ( ${response.data.data.status} )\n══════════════════════\n_ID: ${tanggal + jam}_\n_Layanan :_ ${namaproduk}\n_Data :_ ${tujuan}\n_Harga :_ ${formatmoney(ha)(harga_produk)}\n_Catatan :_ ${response.data.data.sn}`)
+reply(`           _${toko}_\n       𝚂𝚝𝚛𝚞𝚔 𝙳𝚒𝚐𝚒𝚝𝚊𝚕 ( ${response.data.data.status} )\n══════════════════════\n_ID: ${tanggal + jam}_\n_Layanan :_ ${namaproduk}\n_Data :_ ${tujuan}\n_Harga :_ ${formatmoney(harga_produk)}\n_Catatan :_ ${response.data.data.sn}`)
 usr.push(jmlnn2)
 fs.writeFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`, JSON.stringify(usr))   
            
@@ -1346,7 +1252,7 @@ break;
                sett("+saldo", m.sender, hrga)           
  reply(`           _${toko}_\n       𝚂𝚝𝚛𝚞𝚔 𝙳𝚒𝚐𝚒𝚝𝚊𝚕 ( ${error.response.data.data.status} )\n══════════════════════\n_Tujuan :_ ${nomor}\n_Layanan :_ ${namaproduk}\n_Harga :_ ${formatmoney(harga_produk)}\n_Mess :_ ${error.response.data.data.message}`) 
 kris.sendMessage(nomorKu, {text:`*Transaksi Gagal Produk:* ${namaproduk}\n${error.response.data.data.message}`}) 
-const jmlnn2 = `_${tanggal + jam}_\n_Layanan :_ ${namaproduk}\n_Harga :_ ${formatmoney(harga_produk)}\n_Catatan :_ ${response.data.data.sn}\n_Status :_ ${response.data.data.status}`
+const jmlnn2 = `_${tanggal + jam}_\n_Layanan :_ ${namaproduk}\n_Harga :_ ${formatmoney(harga_produk)}\n_Catatan :_ ${error.response.data.data.sn}\n_Status :_ ${error.data.data.status}`
 
 
  usr.push(jmlnn2)
@@ -1364,34 +1270,15 @@ sett("status", m.sender, true)
  
 }
 break      
-case 'getharga': {
-if (!isOwner) return reply(mess.owner) ; 
+        case 'getharga': {
+ if (!isOwner) return reply(mess.owner) 
 var kak = `${digiuser}`
 var lak = `${digiapi}`
-reply(`Okeh sekarang ketik .store`) 
+reply(`Bot Sedang Memperoses silahkan cek di console gagal/Sukses`) 
 getProduk(digiuser, digiapi,)
 }
 break
-case 'gethargaa': {
-  if (cek("id", m.sender) == null) return reply(mess.owner);
-
-  // Fungsi untuk memperbarui harga
-  function updateHarga() {
-      var kak = `${digiuser}`;
-      var lak = `${digiapi}`;
-      reply(`Okeh sekarang ketik .store`);
-      getProduk(digiuser, digiapi);
-  }
-
-  // Jalankan updateHarga pertama kali
-  updateHarga();
-
-  // Jalankan updateHarga setiap 5 menit
-  setInterval(updateHarga, 120000); // 45000 ms = 45 detik
-
-  break;
-}
-case 'ceksaldotoru': {
+case 'saldotoru': {
 if (m.isGroup) return m.reply('Fitur Khusus Private Chat')
 if (!isOwner) return m.reply("Fitur khusus owner!")
 const crypto = require("crypto")
@@ -1414,19 +1301,19 @@ var config = {
 axios(config)
   .then(function (response) {
     if (response.data.data){
-    m.reply(`*「 CEK SALDO BAHAN TORU STORE 」*
+    m.reply(`*「 CEK SALDO DIGIFLAZ 」*
 
-› STATUS  : *TERHUBUNG*
+› STATUS DIGIFLAZZ : *TERHUBUNG*
 › SALDO SERVER : *${formatmoney(response.data.data.deposit)}*\n`)
   } else {
-  m.reply(`*「 AKUN UTAMA 」*\n
+  m.reply(`*「 AKUN DIGIFLAZZ 」*\n
 *Server Terputus Mohon Untuk Mengecek Providernya Kembali*.\n`)
 }
   })
 }
 break			   
 case 'afk': {
-    if (!m.isGroup) return reply("Fitur Ini Khusus Group Ya !");
+    if (!m.isGroup) return reply("Fitur Ini Khusus Group!");
     if (!isAdmins) throw mess.admin
     
 	const cooldowns = new Map();              
@@ -1840,7 +1727,7 @@ var lai = `*Fitur Store*
 ⭔ .tambah
 ⭔ .kurang
 *==============*
- *Menu Khusus Owner* 
+ *Menu Owner* 
 ⭔ .restart 
 ⭔ .getip 
 ⭔ .ping 
@@ -1848,7 +1735,7 @@ var lai = `*Fitur Store*
 ⭔ .unban
 ⭔ .listban
 ⭔ .listuser
-⭔ .getharga
+⭔ .getdigi
 ⭔ .setprem
 ⭔ .acc
 ⭔ .tolak
@@ -1860,7 +1747,8 @@ var lai = `*Fitur Store*
 ⭔ .tagall
 ⭔ .grup _open / close_
 ⭔ .antilink on / off
-*==============*`
+*==============*
+⭔ .sticker `
 reply(lai) 
 }
 break
@@ -1908,7 +1796,7 @@ kris.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 } catch (err) {
 console.log(util.format(err))
 let e = String(err)
-kris.sendMessage("6285798048936@s.whatsapp.net", { text: "assalamualaikum Owner Ada Fitur Yang Eror Nih dari 081255814815" + util.format(e), 
+kris.sendMessage("6285798048936@s.whatsapp.net", { text: "assalamualaikum Owner Ada Fitur Yang Eror Nih " + util.format(e), 
 contextInfo:{
 forwardingScore: 5, 
 isForwarded: true
