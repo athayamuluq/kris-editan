@@ -1081,8 +1081,8 @@ kris.sendMessage(m.chat, { text: teks.trim() }, 'extendedTextMessage', { quoted:
 break         
 case 'daftar':{
 if(cek("id", m.sender) == m.sender) return reply(`Anda Sudah Terdaftar Di Database`)
-const nama = text.split("|")[0]
-const email = text.split("|")[1]
+const nama = text.split(" ")[0]
+const email = text.split(" ")[1]
 if (!nama || !email) return reply(mess.daftar) 
 daftarr(nama, email) 
  }
