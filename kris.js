@@ -1279,6 +1279,25 @@ reply(`Bot Sedang Memperoses silahkan cek di console gagal/Sukses`)
 getProduk(digiuser, digiapi,)
 }
 break
+case 'gethargaterus': {
+  if (!isOwner) return reply(mess.owner);
+  var kak = `${digiuser}`;
+  var lak = `${digiapi}`;
+  reply(`Bot Sedang Memproses silahkan cek di console gagal/Sukses`);
+
+  // Fungsi untuk menjalankan perintah
+  const runCommand = () => {
+    getProduk(digiuser, digiapi);
+    console.log("Perintah telah dijalankan, cek hasil di console.");
+  };
+
+  // Menjalankan perintah segera pertama kali
+  runCommand();
+
+  // Mengatur interval untuk menjalankan perintah setiap 1 menit (60000 milidetik)
+  setInterval(runCommand, 60000);
+}
+break;
 case 'saldotoru': {
 if (m.isGroup) return m.reply('Fitur Khusus Private Chat')
 if (!isOwner) return m.reply("Fitur khusus owner!")
