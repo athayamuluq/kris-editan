@@ -765,7 +765,7 @@ _${toko}_`
             }
         break
 case 'store': case 'topupmenu':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
+if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))
 var slo = cek("saldo", m.sender)
 var sto = `Halo ${cek("username", m.sender)}
@@ -1280,7 +1280,7 @@ getProduk(digiuser, digiapi,)
 }
 break
 case 'gethargaterus': {
-  if (!isOwner) return reply(mess.owner);
+  if (!isAuthorized(user)) return reply(mess.notAuthorized);
   var kak = `${digiuser}`;
   var lak = `${digiapi}`;
   reply(`Bot Sedang Memproses silahkan cek di console gagal/Sukses`);
