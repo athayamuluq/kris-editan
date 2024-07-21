@@ -804,17 +804,17 @@ Silahkan Ketik	:
 
 ❍ ML ( Mobile Legends ) 
 ❍ MLWP ( Mobile Legends WDP )
-❍ PB ( Point Blank )
-❍ HSR ( Honkai Star Rail )
 ❍ HOK ( Honor of Kings )
 ❍ HOKWC ( Honor of Kings WC )
+❍ PUBGM ( Pubg Mobile ) 
+❍ GI ( Genshin Impact ) 
+❍ HSR ( Honkai Star Rail )
+❍ Valorant ( Valorant ) 
+❍ PB ( Point Blank )
 ❍ FFM ( Free Fire Max )
 ❍ FFMM ( Free Fire Max Membership )
 ❍ FF ( Free Fire ) 
-❍ GI ( Genshin Impact ) 
 ❍ CODM ( Call Of Duty Mobile ) 
-❍ Valorant ( Valorant ) 
-❍ PUBGM ( Pubg Mobile ) 
 
 _${toko}_
 `
@@ -938,7 +938,7 @@ getList(kategori, brand, type, )
 break       
 case 'hsr': {
   const kategori = 'Games'
-  const brand = 'Honkai Start Rail'
+  const brand = 'Honkai Star Rail'
   const type = 'Umum'
 getList(kategori, brand, type, )
 }
@@ -1013,7 +1013,13 @@ case 'pulsabyu': {
 getList(kategori, brand, type, )
 }
 break         
- case 'paketind': {
+case 'pascabayar': {
+  const kategori = 'Pascabayar'
+  const brand = 'PLN PASCABAYAR'
+getPaket(kategori, brand, )
+}
+break       
+case 'paketind': {
   const kategori = 'Data'
   const brand = 'INDOSAT'
   const type = 'Umum'
@@ -1081,8 +1087,8 @@ kris.sendMessage(m.chat, { text: teks.trim() }, 'extendedTextMessage', { quoted:
 break         
 case 'daftar':{
 if(cek("id", m.sender) == m.sender) return reply(`Anda Sudah Terdaftar Di Database`)
-const nama = text.split(" ")[0]
-const email = text.split(" ")[1]
+const nama = text.split("@")[0]
+const email = text.split("@")[1]
 if (!nama || !email) return reply(mess.daftar) 
 daftarr(nama, email) 
  }
