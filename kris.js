@@ -781,7 +781,8 @@ Silahkan Ketik	:
 ❍ Topupgames ( Kategori Games ) 
 ❍ Tokpln ( Kategori Token PLN ) 
 ❍ Hargapulsa ( Kategori Pulsa ) 
-❍ Hargakuota ( Kategori Paket data ) 
+❍ Hargakuota ( Kategori Paket data )
+❍ Pascabayar ( Kategori Tagihan Pascabayar ) 
 
 _${toko}_
 `
@@ -1013,12 +1014,6 @@ case 'pulsabyu': {
 getList(kategori, brand, type, )
 }
 break         
-case 'pascabayar': {
-  const kategori = 'Pascabayar'
-  const brand = 'PLN PASCABAYAR'
-getPaket(kategori, brand, )
-}
-break       
 case 'paketind': {
   const kategori = 'Data'
   const brand = 'INDOSAT'
@@ -1723,6 +1718,29 @@ case "update": {
   }
 break;
 }
+case 'pascabayar':{
+var lai = `*PRODUK PASCABAYAR*
+*⭔ PLN*
+PLN PASCABAYAR Rp 1.000
+
+*⭔ INTERNET*
+CBN Rp 200
+Iconnet Rp 3.000
+MyRepublic Rp 500
+Speedy&Indihome Rp 1.500
+
+*⭔ BPJS*
+BPJS Kesehatan Rp 1.500
+
+*NOTE:*
+SEMUA HARGA DITAMBAH JUMLAH TAGIHAN
+Contoh: Jumlah Tagihan Indihome Rp 300.000
+Maka 1.500+300.000= Rp 301.500
+`
+reply(lai) 
+}
+break
+
 case 'lainnya':{
 var lai = `*Fitur Store* 
 ⭔ .addlist
