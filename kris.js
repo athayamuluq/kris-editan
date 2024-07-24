@@ -734,7 +734,14 @@ order(produk, tujuan, refferensi, )
 break
 
         case 'menu':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)        
+ if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}
+Silahkan Ketik Salah Satu Command Dibawah Ini:
+≫ Store ( Menampilkan Menu Produk dan Harga )
+≫ Profile ( Mengecek Profil Anda )
+≫ Deposit ( Deposit Manual )
+≫ Listdeposit ( Riwayat Deposit )
+≫ Listtrx ( Riwayat Transaksi )
+≫ Lainnya`)        
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))      
 const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))     
 var jan = cek("saldo", m.sender)
