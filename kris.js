@@ -601,7 +601,7 @@ if (p[0] === 'member' || p[0] === 'premium') {
 }
 break;
  case 'profile':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+ if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))      
 const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))      
 var sodo = `${cek("saldo", m.sender)}`
@@ -620,7 +620,7 @@ reply(prof)
 }
 break      
 case 'bataldepo':{
-if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
 if(cek("status_deposit", m.sender) == true) return reply(`Maaf,tidak ada orderan yang sedang kaka proses.`)
 reply(`Deposit Dengan ID: ${cek("reff_deposit", m.sender)} berhasi di batalkan`) 
 sett("deposit", m.sender, 0) 
@@ -629,7 +629,7 @@ sett("status_deposit", m.sender, true)
 }
 break
 case 'batal':{
-if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
 if(cek("status", m.sender) == true) return reply(`Maaf,tidak ada orderan yang sedang kaka proses.`)
 sett("status", m.sender, true)
 sett("layanan", m.sender, "")
@@ -721,7 +721,7 @@ kris.sendMessage(no_prem + "@s.whatsapp.net", {text:prm})
 break        
 
 case 'topup':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+ if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
 if (cek("status", m.sender) == false) return reply(`Maaf Tidak bisa melanjutkan karena sebelumnya sudah ada transaksi silahkan di batalkan dulu jika ingin trx ulang dengan cara ketik #batal`) 
 let sal = `
 `
@@ -733,14 +733,15 @@ order(produk, tujuan, refferensi, )
 }
 break
 
-        case 'menu':{
- if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}
-Silahkan Ketik Salah Satu Command Dibawah Ini:
+case 'menu':{
+ if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan Ketik Salah Satu Command Dibawah Ini:
+
 ≫ Store ( Menampilkan Menu Produk dan Harga )
 ≫ Profile ( Mengecek Profil Anda )
 ≫ Deposit ( Deposit Manual )
 ≫ Listdeposit ( Riwayat Deposit )
 ≫ Listtrx ( Riwayat Transaksi )
+≫ Payment ( Metode Pembayaran )
 ≫ Lainnya`)        
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))      
 const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))     
@@ -772,7 +773,17 @@ _${toko}_`
             }
         break
 case 'store': case 'topupmenu':{
-if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
+if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan pilih Menu yang kak ${sender.split("@")[0]} inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
+-----------------------------------
+Silahkan Ketik	:
+
+❍ Topupgames ( Kategori Games ) 
+❍ Tokpln ( Kategori Token PLN ) 
+❍ Hargapulsa ( Kategori Pulsa ) 
+❍ Hargakuota ( Kategori Paket data )
+❍ Pascabayar ( Kategori Tagihan Pascabayar )
+
+_${toko}_`)    
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))
 var slo = cek("saldo", m.sender)
 var sto = `Halo ${cek("username", m.sender)}
@@ -781,7 +792,7 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Role : ${cek("level", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
-Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
+Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
 -----------------------------------
 Silahkan Ketik	:
 
@@ -790,6 +801,7 @@ Silahkan Ketik	:
 ❍ Hargapulsa ( Kategori Pulsa ) 
 ❍ Hargakuota ( Kategori Paket data )
 ❍ Pascabayar ( Kategori Tagihan Pascabayar ) 
+❍ Payment ( Metode Pembayaran )
 
 _${toko}_
 `
@@ -797,7 +809,29 @@ reply(sto)
 }
 break
 case 'topupgames':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
+ if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan pilih Menu yang kak ${sender.split("@")[0]} inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
+-----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
+-----------------------------------
+Silahkan Ketik	:
+
+❍ ML ( Mobile Legends ) 
+❍ MLWP ( Mobile Legends WDP )
+❍ HOK ( Honor of Kings )
+❍ HOKWC ( Honor of Kings WC )
+❍ PUBGM ( Pubg Mobile ) 
+❍ GI ( Genshin Impact ) 
+❍ HSR ( Honkai Star Rail )
+❍ Valorant ( Valorant ) 
+❍ PB ( Point Blank )
+❍ FFM ( Free Fire Max )
+❍ FFMM ( Free Fire Max Membership )
+❍ FF ( Free Fire ) 
+❍ CODM ( Call Of Duty Mobile ) 
+
+_${toko}_`)    
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))
 var slo = cek("saldo", m.sender)
 var sto = `Halo ${cek("username", m.sender)}
@@ -830,7 +864,24 @@ reply(sto)
 }
 break
 case 'hargakuota':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
+ if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan pilih Menu yang kak ${sender.split("@")[0]} inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
+-----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
+-----------------------------------
+Silahkan Ketik	:
+
+❍ Paketind ( Indosat ) 
+❍ Paketsmr ( Smartfren ) 
+❍ Paketaxis ( Axis ) 
+❍ Paketxl ( XL ) 
+❍ Pakettri ( Tri ) 
+❍ Paketbyu ( B.yu ) 
+❍ Pakettsel ( Telkomsel ) 
+
+_${toko}_
+`)    
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))
 var slo = cek("saldo", m.sender)
 var sto = `Halo ${cek("username", m.sender)}
@@ -850,13 +901,31 @@ Silahkan Ketik	:
 ❍ Pakettri ( Tri ) 
 ❍ Paketbyu ( B.yu ) 
 ❍ Pakettsel ( Telkomsel ) 
+
 _${toko}_
 `
 reply(sto) 
 }
 break
 case 'hargapulsa':{
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)    
+ if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan pilih Menu yang kak ${sender.split("@")[0]} inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
+-----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
+-----------------------------------
+Silahkan Ketik	:
+
+❍ Pulsaind ( Indosat ) 
+❍ Pulsasmr ( Smartfren ) 
+❍ Pulsaaxis ( Axis ) 
+❍ Pulsaxl ( XL ) 
+❍ Pulsatri ( Tri ) 
+❍ Pulsabyu ( B.yu ) 
+❍ Pulsatsel ( Telkomsel )
+
+_${toko}_
+`)    
 const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))
 var slo = cek("saldo", m.sender)
 var sto = `Halo ${cek("username", m.sender)}
@@ -876,6 +945,7 @@ Silahkan Ketik	:
 ❍ Pulsatri ( Tri ) 
 ❍ Pulsabyu ( B.yu ) 
 ❍ Pulsatsel ( Telkomsel ) 
+
 _${toko}_
 `
 reply(sto) 
@@ -1064,7 +1134,7 @@ getPaket(kategori, brand, type, )
 }
 break         
  case 'listtrx': {
-  if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+  if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
    const usra = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))    
    var slo = cek("saldo", m.sender)
  let no = 1         
@@ -1076,7 +1146,7 @@ kris.sendMessage(m.chat, { text: teks.trim() }, 'extendedTextMessage', { quoted:
 }
 break         
 case 'listdeposit': {
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+ if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
    const usra = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`))    
    var slo = cek("saldo", m.sender)
  let no = 1         
@@ -1096,7 +1166,7 @@ daftarr(nama, email)
  }
  break  
  case 'deposit': {
-  if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+  if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
 let reff_deposi = require("crypto").randomBytes(5).toString("hex").toUpperCase()
 if(cek("status_deposit", m.sender) == false) return reply(`Ada deposit yang belum terselesaikan silahkan selesaikan deposit sebelumnya atau batalkan dengan ketik #bataldepo.`)
  let jumlah_nya = text.split("|")[0]
@@ -1125,7 +1195,7 @@ kris.sendMessage(from, {image:qrisdonate, caption:txt})
 break
 case 'bukti':{
 if(cek("status_deposit", m.sender) == true) return reply(`Tidak ada deposit yg sedang berlangsung`)
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)
+ if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)
 if (!quoted) return reply(`Kirim/Reply Gambar Dengan Caption *${prefix + command}*`)
 if (/image/.test(mime)) {
 let media = await quoted.download()
@@ -1194,7 +1264,7 @@ fs.writeFileSync(`./Pengaturan/database/riwayat/deposit/${jjl}.json`, JSON.strin
 }
 break
         case 'yes': {    
- if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar`)   
+ if(cek("id", m.sender) == null) return reply(`Anda Belum Terdaftar di Database Silahkan ketik #daftar username@nama\nContoh: #daftar Rey@Athaya`)   
 if(cek("status", m.sender) == true) return reply(`Tidak ada pesanan sebelumnya silahkan melakukan pembelian produk kembali.`)  
 let kode_buyer = `${cek("kode_layanan", m.sender)}`
 const usr = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`))    
@@ -1762,6 +1832,28 @@ BPJS Kesehatan Rp 1.500
 SEMUA HARGA DITAMBAH JUMLAH TAGIHAN
 Contoh: Jumlah Tagihan Indihome Rp 300.000
 Maka 1.500+300.000= Rp 301.500
+`
+reply(lai) 
+}
+break
+
+case 'payment':{
+var lai = `*PAYMENT*
+Dana, Gopay, Spay 0895366601524
+AN Athaya Muluq Priadinata
+!TF Dari Bank ke Dana +500
+!TF Dari Dana ke Dana +100
+Bank Jago 101026730717
+AN Athaya Muluo Priadinata
+Bank NEO 5859457102500553
+Bank BRI 016301143197508
+Seabank 901598540500
+AN Athaya Muluq Priadinata
+QRIS LINK DIBAWAH
+https://wa.me/p/26464179756502715/6285964161024
+Jika Tidak Bisa Menggunakan Link Diaras Gunakan Link Dibawah
+https://telegra.ph/file/1f9831969443f0b40d3aa.png
+QRIS NAME: A3 Store
 `
 reply(lai) 
 }
