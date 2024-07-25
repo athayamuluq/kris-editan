@@ -733,6 +733,55 @@ order(produk, tujuan, refferensi, )
 }
 break
 
+case 'menuu': {
+  if (cek("id", m.sender) == null) {
+      return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan Ketik Salah Satu Command Dibawah Ini:
+
+≫ Store ( Menampilkan Menu Produk dan Harga )
+≫ Profile ( Mengecek Profil Anda )
+≫ Deposit ( Deposit Manual )
+≫ Listdeposit ( Riwayat Deposit )
+≫ Listtrx ( Riwayat Transaksi )
+≫ Payment ( Metode Pembayaran )
+≫ Lainnya`);
+  }
+
+  const trx = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/trx/${m.sender}.json`));
+  const depo = JSON.parse(fs.readFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`));
+  var jan = cek("saldo", m.sender);
+  var men = `Halo ${cek("username", m.sender)}
+
+═══▣ ${toko} ▣═══
+ ━━━━━━━━━━━━━━━━
+
+╭─❒ 「 User Info 」 
+├  Username : ${cek("username", m.sender)}
+├  Level    : *${cek("level", m.sender)}*
+├  Saldo   : ${formatmoney(jan)}
+├  Total Transaksi : *${trx.length}*
+├  Total Deposit : *${depo.length}*
+✪═════════════════✪
+
+Silahkan Ketik Salah Satu Command Dibawah Ini:
+≫ Store ( Menampilkan Menu Produk dan Harga )
+≫ Profile ( Mengecek Profil Anda )
+≫ Deposit ( Deposit Manual )
+≫ Listdeposit ( Riwayat Deposit )
+≫ Listtrx ( Riwayat Transaksi )
+≫ Payment ( Metode Pembayaran )
+≫ Lainnya
+
+_${toko}_`;
+
+  // Mengirim gambar dan pesan teks
+  sendImage(
+      "https://telegra.ph/file/05677e8cb00a23a319670.png", // URL gambar
+      men, // Pesan teks
+      m.sender // ID penerima
+  );
+}
+break;
+
 case 'menu':{
  if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan Ketik Salah Satu Command Dibawah Ini:
 
@@ -765,15 +814,20 @@ Silahkan Ketik Salah Satu Command Dibawah Ini:
 ≫ Deposit ( Deposit Manual )
 ≫ Listdeposit ( Riwayat Deposit )
 ≫ Listtrx ( Riwayat Transaksi )
+≫ Payment ( Metode Pembayaran )
 ≫ Lainnya
 
 _${toko}_`
- 
-        reply(men) 
-            }
-        break
+reply(men) 
+}
+break
+
 case 'store': case 'topupmenu':{
 if(cek("id", m.sender) == null) return reply(`Hai Kak @${sender.split("@")[0]}, Silahkan pilih Menu yang kak ${sender.split("@")[0]} inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
+-----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
 -----------------------------------
 Silahkan Ketik	:
 
@@ -794,6 +848,10 @@ var sto = `Halo ${cek("username", m.sender)}
 -----------------------------------
 Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang didalam tanda kurung tidak perlu diketik )
 -----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
+-----------------------------------
 Silahkan Ketik	:
 
 ❍ Topupgames ( Kategori Games ) 
@@ -801,7 +859,6 @@ Silahkan Ketik	:
 ❍ Hargapulsa ( Kategori Pulsa ) 
 ❍ Hargakuota ( Kategori Paket data )
 ❍ Pascabayar ( Kategori Tagihan Pascabayar ) 
-❍ Payment ( Metode Pembayaran )
 
 _${toko}_
 `
@@ -841,6 +898,10 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
 Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
+-----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
 -----------------------------------
 Silahkan Ketik	:
 
@@ -891,6 +952,10 @@ var sto = `Halo ${cek("username", m.sender)}
 ❍ Total Pesanan : ${trx.length}
 -----------------------------------
 Silahkan pilih Menu yang kak *${cek("username", m.sender)}* inginkan, hanya ketik pilihan topup yang telah disediakan ( yang ddidalam tanda kurung tidak perlu diketik )
+-----------------------------------
+*NOTE STATUS:*
+✅ Tanda Layanan Tersedia ( Bisa Diorder )
+⛔ Tanda Layanan Tidak Tersedia ( Tida Bisa Diorder )
 -----------------------------------
 Silahkan Ketik	:
 
