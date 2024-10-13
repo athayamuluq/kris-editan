@@ -169,8 +169,13 @@ kris.sendPresenceUpdate(jd, from)
 kris.readMessages([m.key])
 }
 function formatmoney(n, opt = {}) {
-  if (!opt.current) opt.current = "IDR"
-  return n.toLocaleString("id", { style: "currency", currency: opt.current })
+  if (!opt.current) opt.current = "IDR";
+  return n.toLocaleString("id", { 
+    style: "currency", 
+    currency: opt.current, 
+    minimumFractionDigits: 0, // Menonaktifkan desimal
+    maximumFractionDigits: 0  // Menonaktifkan desimal
+  });
 }
 
 function acakindong(min, max = null) {
@@ -452,29 +457,31 @@ fs.writeFileSync(`./Pengaturan/database/riwayat/deposit/${m.sender}.json`, JSON.
     
 
 function getList(kategori, brand, type) {
-let tek = `「 *${toko}* 」\n_➖ LAYANAN ${brand.toUpperCase()} ➖_\n`;
-list_produk.forEach(function(product) {
-list_produk.sort((a, b) => a.price - b.price);
-if (product.category === kategori) {
-if (product.brand === brand) {
-if (product.type === type) {
-const status = product.seller_product_status;
-const seller = status ? '✅' : '⛔';  
+  let tek = `「 *${toko}* 」\n_➖ LAYANAN ${brand.toUpperCase()} ➖_\n`;
+  
+  list_produk.sort((a, b) => a.price - b.price);  // Sorting dilakukan sekali di luar loop untuk efisiensi
+  
+  list_produk.forEach(function(product) {
+      if (product.category === kategori && product.brand === brand && product.type === type) {
+          const status = product.seller_product_status ? '✅' : '⛔';  
+          const harga = isLevel ? product.price * profit.premium : product.price * profit.member;
 
-const harga = isLevel ? product.price * profit.premium : product.price * profit.member;   
-   tek += `
-${seller}${product.buyer_sku_code.replace("", "")} ( ${product.product_name} ) =
-${formatmoney(harga)}`;
-    }}
-}});
+          // Format output sesuai permintaan
+          tek += `
+*🛍 ${product.product_name}* 
+*PID : ${product.buyer_sku_code}*
+*Harga :* ${formatmoney(Math.floor(harga))}
+*Status : ${status}*\n`;
+      }
+  });
 
-let listProduct21 = `🛒 Cara Pembelian: Hubungi admin atau ketik : caratopup
- 
-🖥 Nama Bot: ${server}
-☎️ Tlpn/WA: ${owner}
-🔰 Telegram: ${telegram}
-🔰 Channel Telegram: ${channel}\n\n_${toko}_`;
-reply(`${tek}\n\n${listProduct21}`) 
+  // Tambahan informasi produk
+  let listProduct21 = `*🛒 Cara Pembelian: Hubungi Admin*
+
+*☎️ WA Admin:* wa.me/${owner}\n\n_*${toko}*_`;
+
+  // Mengirim hasil (reply)
+  reply(`${tek}\n\n${listProduct21}`);
 }
 
 function getPaket(kategori, brand) {
